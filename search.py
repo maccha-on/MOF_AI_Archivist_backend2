@@ -29,7 +29,7 @@ def index_chunks(chunks: list[dict]):
 
 
 def search_chunks(question: str, k: int):
-    from app.embedding import get_embedding
+    from embedding import get_embedding
 
     vector = get_embedding(question)
 

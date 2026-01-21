@@ -4,16 +4,16 @@ load_dotenv()
 ###############
 
 from fastapi import FastAPI, BackgroundTasks
-from app.models import IndexRequest, SearchRequest
-from app.blob import load_pdfs_from_blob
-from app.chunk import chunk_pages
-from app.embedding import get_embedding
-from app.search import index_chunks, search_chunks
+from models import IndexRequest, SearchRequest
+from blob import load_pdfs_from_blob
+from chunk import chunk_pages
+from embedding import get_embedding
+from search import index_chunks, search_chunks
 
 
 app = FastAPI(title="RAG API")
 
-@app.get("/health")
+@app.get("/")
 def health():
     return {"status": "ok"}
 

@@ -8,6 +8,7 @@ __pycache__/
 venv/
 env/
 .venv/
+antenv/
 
 # IDE / エディタ関連
 .vscode/

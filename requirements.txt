@@ -4,3 +4,4 @@ azure-storage-blob
 azure-search-documents
 openai
 pypdf
+gunicorn
