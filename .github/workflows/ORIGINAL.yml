@@ -23,5 +23,5 @@ jobs:
         uses: azure/webapps-deploy@v3
         with:
           app-name: tech0-gen-11-step3-2-py-52
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_XXXX }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_A7628BD7C8E34F13AD12830EEC0CE8FB }}
           package: .
