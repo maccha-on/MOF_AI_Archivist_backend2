@@ -45,11 +45,12 @@ from app.search import search_chunks
 
 @app.get("/ask")
 def ask_api(
-    q: str = Query(..., description="質問文"),
+    q: str = Query(..., description="質問文") 
+    #,
     #k: int = Query(5, ge=1, le=20)
-    k: int = Query(5, description="取得件数")
+ #   k: int = Query(5, description="取得件数")
 ):
-    results = search_chunks(q, k)
+    results = search_chunks(q, 3)
 
     #return {
         # "answer": "",  # ← 次のステップで LLM 回答を入れる
