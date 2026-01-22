@@ -11,6 +11,7 @@ from app.embedding import get_embedding
 from app.search import index_chunks, search_chunks
 
 
+
 app = FastAPI(title="RAG API")
 
 @app.get("/")
@@ -33,6 +34,42 @@ def index_api(req: IndexRequest, bg: BackgroundTasks):
     bg.add_task(run_index, req)
     return {"status": "accepted"}
 
-@app.post("/search")
+@app.get("/search")
 def search_api(req: SearchRequest):
     return search_chunks(req.question, req.k)
+
+from fastapi import Query
+from fastapi.responses import JSONResponse 
+from app.search import search_chunks
+
+
+@app.get("/ask")
+def ask_api(
+    q: str = Query(..., description="質問文"),
+    #k: int = Query(5, ge=1, le=20)
+    k: int = Query(5, description="取得件数")
+):
+    results = search_chunks(q, k)
+
+    #return {
+        # "answer": "",  # ← 次のステップで LLM 回答を入れる
+       # "sources": [
+    sources = [
+            {
+                "file_name": r["documentName"],
+                "uri": r["blobUrl"],
+                "category": "unknown",   # index未変更のため固定
+                "page": None,            # index未変更のためNone
+                "chunk_id": r["chunkIndex"],
+                "text": r["content"],
+            }
+            for r in results
+        ]
+   # }
+    return JSONResponse(
+        content={
+            "answer": "",
+            "sources": sources
+        },
+        media_type="application/json; charset=utf-8"
+    )

@@ -5,3 +5,4 @@ azure-search-documents
 openai
 pypdf
 gunicorn
+PyMuPDF
