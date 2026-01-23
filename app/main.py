@@ -9,10 +9,22 @@ from app.blob import load_pdfs_from_blob
 from app.chunk import chunk_pages
 from app.embedding import get_embedding
 from app.search import index_chunks, search_chunks
+from fastapi.middleware.cors import CORSMiddleware
 
 
 
-app = FastAPI(title="RAG API")
+ # FastAPI起動
+app = FastAPI(title="MOF2 Prototype API")
+# CORSミドルウェアの設定
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["GET", "POST"],
+    allow_headers=["*"],
+)
+
+
 
 @app.get("/")
 def health():
