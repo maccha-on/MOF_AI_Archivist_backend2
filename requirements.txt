@@ -1,8 +1,9 @@
-fastapi
-uvicorn[standard]
+fastapi>=0.110
+uvicorn[standard]>=0.27
+gunicorn>=21
 azure-storage-blob
 azure-search-documents
-openai
+openai>=1.0
 pypdf
 gunicorn
 PyMuPDF
