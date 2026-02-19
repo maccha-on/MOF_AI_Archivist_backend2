@@ -51,8 +51,7 @@ def require_bff_secret(x_bff_secret: str | None):
 
 def verify_google_id_token_and_digit_email(authorization: str | None):
     """
-    Authorization: Bearer <google id_token>
-    を検証し、email に数字が含まれるユーザーのみ許可する。
+    Authorization: Bearer <google id_token> を検証
     """
     if not GOOGLE_CLIENT_ID:
         raise HTTPException(status_code=500, detail="Server misconfig: AUTH_GOOGLE_ID is not set")
@@ -76,9 +75,10 @@ def verify_google_id_token_and_digit_email(authorization: str | None):
 
     email = info.get("email") or ""
 
-    # mo か fu か 数字いずれも含まないと認証NG
-    if not ((re.search(r"\d", email) or re.search(r"mo", email)) or re.search(r"fu", email)):
-        raise HTTPException(status_code=403, detail="Digits required in email")
+    # アカウントID検証をコメントアウト
+    # # mo か fu か 数字いずれも含まないと認証NG
+    # if not ((re.search(r"\d", email) or re.search(r"mo", email)) or re.search(r"fu", email)):
+    #     raise HTTPException(status_code=403, detail="Digits required in email")
 
     return info  # {email, sub, name, ...}
 
