@@ -8,6 +8,8 @@ on:
   push:
     branches:
       - without_auth
+      - master
+      - security_ma
   workflow_dispatch:
 
 jobs:
