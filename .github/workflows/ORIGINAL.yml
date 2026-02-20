@@ -8,6 +8,8 @@ on:
   push:
     branches:
       - master   # ← masterでなければ main に
+      - without_auth
+      - security_ma
   workflow_dispatch:
 
 jobs:
